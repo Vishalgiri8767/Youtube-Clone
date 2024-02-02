@@ -1,13 +1,13 @@
 import React from 'react'
 
 const VideoCard = ({info}) => {
+  
   const {snippet, statistics} = info ||{} ;
   const {channelTitle, title, thumbnails, localized } = snippet || {} ;
   const {medium}= thumbnails || {};
   const {url} = medium ||{};
   const {viewCount} = statistics ||{};
-  const {publishedAt} = localized ||{};
-  console.log(info); 
+  //console.log(info); 
 
   return (
     <div className=' m-4 rounded-lg  w-72 shadow-xl  '>
