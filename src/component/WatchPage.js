@@ -22,7 +22,7 @@ const WatchPage = () => {
 
       const data = await fetch(url);
       const watchVideoJson = await data.json();
-     console.log(watchVideoJson);
+   //  console.log(watchVideoJson);
       setVideo(watchVideoJson.items);      
     }
    
@@ -82,8 +82,10 @@ const WatchPage = () => {
             <span className='font-semibold'>{viewCount} views</span>
             <span className='font-semibold ml-4'>{publishedAt}</span>
             <span className='font-normal ml-4'>
-            {tags?.map((hash)=>{
-                return <span>#{hash}  </span>
+
+            {tags?.map((hash, videoId)=>{
+              
+                return <span key={videoId}>#{hash}  </span>
             }
               )}
             </span>
