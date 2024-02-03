@@ -5,6 +5,8 @@ const appSlice = createSlice({
     initialState: {
         isMenuOpen:true,
         videos:null,
+        movieSuggestions: null,
+
     },
     reducers:{
         toggleMenu : (state)=>{
@@ -15,9 +17,12 @@ const appSlice = createSlice({
         },
         addVideos: (state, action)=>{
             state.videos = action.payload;
-        }
+        },
+        addMovieSuggestion: (state,action)=>{
+            state.movieSuggestions = action.payload;
+        },
     },
 });
 
-export const {toggleMenu,closeMenu,addVideos} = appSlice.actions;
+export const {toggleMenu,closeMenu,addVideos,addMovieSuggestion} = appSlice.actions;
 export default appSlice.reducer;
