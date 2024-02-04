@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import {checkSearchBtnClicked, toggleMenu } from '../utils/appSlice';
 import { GOOGLE_API_KEY, YOUTUBE_SEARCH_SUGGESTIONS_API } from '../constant';
-import { cacheResults } from '../utils/searchSlice';
+import { addSearchResults, cacheResults } from '../utils/searchSlice';
 
 const Header = () => {
   const dispatch = useDispatch();
@@ -58,7 +58,8 @@ const Header = () => {
       await fetch('https://youtube.googleapis.com/youtube/v3/search?part=snippet&q='+{searchInput}+'&key='+
       "AIzaSyCFw8IwaBHgF-yqqNdDXfqnB_38BFLlqw8");
     const json = await data.json();
-    console.log(json);
+    dispatch(addSearchResults(json.items));
+
   };
 
   
