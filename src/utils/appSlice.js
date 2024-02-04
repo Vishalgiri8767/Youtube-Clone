@@ -6,7 +6,7 @@ const appSlice = createSlice({
         isMenuOpen:true,
         videos:null,
         movieSuggestions: null,
-
+        searchBtnClick: false,
     },
     reducers:{
         toggleMenu : (state)=>{
@@ -21,8 +21,11 @@ const appSlice = createSlice({
         addMovieSuggestion: (state,action)=>{
             state.movieSuggestions = action.payload;
         },
+        checkSearchBtnClicked:(state)=>{
+            state.searchBtnClick=!state.searchBtnClick;
+        }
     },
 });
 
-export const {toggleMenu,closeMenu,addVideos,addMovieSuggestion} = appSlice.actions;
+export const {toggleMenu,closeMenu,addVideos,addMovieSuggestion,checkSearchBtnClicked} = appSlice.actions;
 export default appSlice.reducer;

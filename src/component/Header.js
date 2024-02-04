@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
-import {toggleMenu } from '../utils/appSlice';
-import { YOUTUBE_SEARCH_SUGGESTIONS_API } from '../constant';
+import {checkSearchBtnClicked, toggleMenu } from '../utils/appSlice';
+import { GOOGLE_API_KEY, YOUTUBE_SEARCH_SUGGESTIONS_API } from '../constant';
 import { cacheResults } from '../utils/searchSlice';
 
 const Header = () => {
@@ -10,6 +10,8 @@ const Header = () => {
   const [searchInput, setSearchInput] = useState("");
   const [searchSuggestion, setSearchSuggestion] = useState([]);
   const [showSuggestions, setShowSuggestions] = useState(false);
+  const[searchBtnClick, setSearchBtnClick] = useState(false);
+
   useEffect(()=> {
     //make an api call after every key press.
     //but if the diffrence between two key press < 200ms
@@ -45,6 +47,21 @@ const Header = () => {
     dispatch(toggleMenu());
   };
 
+  const handleSearchBtn = ()=>{
+    setSearchBtnClick(true);
+  //  dispatch(checkSearchBtnClicked(searchBtnClick));
+    searchVideos();
+  };
+
+  const searchVideos = async()=>{
+    const data = 
+      await fetch('https://youtube.googleapis.com/youtube/v3/search?part=snippet&q='+{searchInput}+'&key='+
+      "AIzaSyCFw8IwaBHgF-yqqNdDXfqnB_38BFLlqw8");
+    const json = await data.json();
+    console.log(json);
+  };
+
+  
   return (
     <div className='w-full grid grid-flow-col  p-5 shadow-lg'>
       <div className='flex col-span-1 '>
@@ -69,7 +86,8 @@ const Header = () => {
             value={searchInput}
             className='w-1/2 border outline-none border-gray-500 px-8 rounded-l-full' type='text' placeholder='Search for videos'
          />
-          <button className='border border-gray-500 py-2 px-4 bg-gray-200 rounded-r-full'>
+          <button onClick={handleSearchBtn}
+            className='border border-gray-500 py-2 px-4 bg-gray-200 rounded-r-full'>
             <img className='h-5' alt='search icon' src='https://cdn3.iconfinder.com/data/icons/feather-5/24/search-512.png' />
           </button>
        </div>

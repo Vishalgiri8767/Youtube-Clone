@@ -7,3 +7,6 @@ export const VIDEO_INFO_URL = "https://youtube.googleapis.com/youtube/v3/videos?
 GOOGLE_API_KEY;
 
 export const YOUTUBE_SEARCH_SUGGESTIONS_API ="http://suggestqueries.google.com/complete/search?client=firefox&ds=yt&q=";
+
+export const YOUTUBE_SEARCH_RESULTS = 'https://youtube.googleapis.com/youtube/v3/search?part=snippet&q=surfing&key='+
+GOOGLE_API_KEY;
