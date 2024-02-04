@@ -7,7 +7,7 @@ const Header = () => {
   const dispatch = useDispatch();
   const [searchInput, setSearchInput] = useState("");
   const [searchSuggestion, setSearchSuggestion] = useState([]);
-  
+  const [showSuggestions, setShowSuggestions] = useState(false);
   useEffect(()=> {
     //make an api call after every key press.
     //but if the diffrence between two key press < 200ms
@@ -51,6 +51,8 @@ const Header = () => {
        <div className=' flex'>
          <input 
             onChange={(e) => setSearchInput(e.target.value)}
+            onFocus={()=>setShowSuggestions(true)}
+            onBlur={()=>setShowSuggestions(false)}
             value={searchInput}
             className='w-1/2 border outline-none border-gray-500 px-8 rounded-l-full' type='text' placeholder='Search for videos'
          />
@@ -58,15 +60,17 @@ const Header = () => {
             <img className='h-5' src='https://cdn3.iconfinder.com/data/icons/feather-5/24/search-512.png' />
           </button>
        </div>
-        <div className='fixed px-8 rounded-lg mt-10 bg-white shadow-lg py-2 w-[34rem]'>
+    { showSuggestions &&
+        <div className='fixed px-8 rounded-lg mt-10 bg-white shadow-lg py-2 w-[34rem] border border-gray-200'>
           <ul>
              { searchSuggestion.map((suggestion)=> 
-             <li className='flex items-center gap-4'>
+             <li className='flex items-center gap-4 hover:bg-gray-200 cursor-pointer border border-gray-100'>
                 <img src='https://cdn3.iconfinder.com/data/icons/feather-5/24/search-512.png' className='h-4 mt-1' />
                {suggestion}
               </li>)}
           </ul>
         </div>
+        }
       </div>
       <div className='flex col-span-1 '>
         <img className='h-8'
