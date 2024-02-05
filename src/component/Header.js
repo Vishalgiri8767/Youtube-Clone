@@ -49,7 +49,7 @@ const Header = () => {
 
   const handleSearchBtn = ()=>{
     setSearchBtnClick(true);
-  //  dispatch(checkSearchBtnClicked(searchBtnClick));
+   dispatch(checkSearchBtnClicked(searchBtnClick));
     searchVideos();
   };
 

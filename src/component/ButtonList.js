@@ -16,8 +16,6 @@ const ButtonList = ({name}) => {
     "Ipl",
     "Cooking",
     "Shopping",
-    
-
   ];
 
   return (
@@ -31,13 +29,8 @@ const ButtonList = ({name}) => {
         <Button name="Trailers" />
         <Button name="Movies" />
         <Button name="Cricket" />
-        <Button name="Soccer" />
-        <Button name="Kabaddi" />
-        <Button name="Ipl" />
-        <Button name="Cooking" />
-        <Button name="Shopping" />
-        <Button name="Kids" />
-        <Button name="Cartoon" /> */}
+    */}
+
     </div>
   )
 }
